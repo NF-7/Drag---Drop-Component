@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import Widgets from './components/Widgets';
 
 function App() {
   const [widgets, setWidgets] = useState([]);
-  
+
   function handleOnDrag(e, widgetType) {
-    e.dataTransfer.setData("widgetType", widgetType)
+    e.dataTransfer.setData('widgetType', widgetType);
   }
 
   function handleOnDrop(e) {
@@ -21,29 +22,7 @@ function App() {
       <div className="app">
         <h1>React Drag & Drop Component</h1>
           <div className="widget-container">
-            <div className="widgets">
-              <div 
-                className="widget"
-                draggable
-                onDragStart={(e) => handleOnDrag(e, "Widget A")}
-                >
-                Widget A
-              </div>
-              <div 
-                className="widget"
-                draggable
-                onDragStart={(e) => handleOnDrag(e, "Widget B")}
-                >
-                Widget B
-              </div>
-              <div 
-                className="widget"
-                draggable
-                onDragStart={(e) => handleOnDrag(e, "Widget C")}
-                >
-                Widget C
-              </div>
-            </div>
+            <Widgets handleOnDrag={handleOnDrag} />
 
             <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver}>
               {widgets.map((widget, index) => (
